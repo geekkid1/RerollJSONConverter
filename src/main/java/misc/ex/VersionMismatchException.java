@@ -1,5 +1,12 @@
 package misc.ex;
 
+/**
+ * This exception will be thrown if the version number provided in the XML does not match
+ * with the expected version (in this case "5"). If the versions do not match then deserialization
+ * may not be possible due to the differences in formats between versions.
+ * @author geekkid1
+ *
+ */
 public class VersionMismatchException extends RuntimeException {
 
 	/**
