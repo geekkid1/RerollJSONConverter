@@ -12,7 +12,8 @@ import com.fasterxml.jackson.dataformat.xml.annotation.*;
  * @author geekkid1
  *
  */
-public class Spell {
+@JacksonXmlRootElement(localName = "spell")
+public class FCSpell {
 	private String name;
 	private int level;
 	private String time;

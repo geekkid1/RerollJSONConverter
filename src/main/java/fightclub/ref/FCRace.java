@@ -2,7 +2,15 @@ package fightclub.ref;
 
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
 
-public class Race {
+/**
+ * Class that provides the data structure for deserializing the tags in the source XML
+ * that represent character races. These races essentially represent different species the
+ * character the user creates can be, each with their own advantages and disadvantages.
+ * @author geekkid1
+ *
+ */
+@JacksonXmlRootElement(localName = "race")
+public class FCRace {
 	private String name;
 	private String size;
 	@JacksonXmlProperty(localName = "ability")
@@ -14,7 +22,10 @@ public class Race {
 	private String racialProficiencies;
 	@JacksonXmlProperty(localName = "trait")
 	@JacksonXmlElementWrapper(useWrapping = false)
-	private Trait[] traits;
+	private FCTrait[] traits;
+	@JacksonXmlProperty(localName = "modifier")
+	@JacksonXmlElementWrapper(useWrapping = false)
+	private String[] modifiers;
 	
 	public String getName() {
 		return name;
@@ -52,11 +63,17 @@ public class Race {
 	public void setRacialProficiencies(String racialProficiencies) {
 		this.racialProficiencies = racialProficiencies;
 	}
-	public Trait[] getTraits() {
+	public FCTrait[] getTraits() {
 		return traits;
 	}
-	public void setTraits(Trait[] traits) {
+	public void setTraits(FCTrait[] traits) {
 		this.traits = traits;
+	}
+	public String[] getModifiers() {
+		return modifiers;
+	}
+	public void setModifiers(String[] modifiers) {
+		this.modifiers = modifiers;
 	}
 	
 
