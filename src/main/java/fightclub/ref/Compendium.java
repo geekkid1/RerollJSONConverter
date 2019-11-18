@@ -19,4 +19,34 @@ public class Compendium {
 	@JacksonXmlProperty(localName = "spell")
 	@JacksonXmlElementWrapper(useWrapping = false)
 	private Spell[] spells;
+	
+	@JacksonXmlProperty(localName = "race")
+	@JacksonXmlElementWrapper(useWrapping = false)
+	private Race[] races;
+
+	public double getVersion() {
+		return version;
+	}
+
+	public void setVersion(double version) {
+		this.version = version;
+	}
+
+	public Spell[] getSpells() {
+		return spells;
+	}
+
+	public void setSpells(Spell[] spells) {
+		this.spells = spells;
+	}
+
+	public Race[] getRaces() {
+		return races;
+	}
+
+	public void setRaces(Race[] races) {
+		this.races = races;
+	}
+	
+	
 }
