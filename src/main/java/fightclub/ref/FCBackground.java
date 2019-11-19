@@ -20,7 +20,7 @@ public class FCBackground {
 	private FCTrait[] traits;
 	@JacksonXmlProperty(localName = "modifier")
 	@JacksonXmlElementWrapper(useWrapping = false)
-	private String[] modifiers;
+	private FCModifier[] modifiers;
 	
 	public String getName() {
 		return name;
@@ -40,10 +40,10 @@ public class FCBackground {
 	public void setTraits(FCTrait[] traits) {
 		this.traits = traits;
 	}
-	public String[] getModifiers() {
+	public FCModifier[] getModifiers() {
 		return modifiers;
 	}
-	public void setModifiers(String[] modifiers) {
+	public void setModifiers(FCModifier[] modifiers) {
 		this.modifiers = modifiers;
 	}
 }

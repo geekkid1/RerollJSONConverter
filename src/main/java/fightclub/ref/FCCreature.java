@@ -54,6 +54,9 @@ public class FCCreature {
 	@JacksonXmlProperty(localName = "legendary")
 	@JacksonXmlElementWrapper(useWrapping = false)
 	private FCTrait[] legendaries;
+	private String environment;
+	private String spells;
+	private String slots;
 	
 	public String getName() {
 		return name;
@@ -216,5 +219,23 @@ public class FCCreature {
 	}
 	public void setLegendaries(FCTrait[] legendaries) {
 		this.legendaries = legendaries;
+	}
+	public String getEnvironment() {
+		return environment;
+	}
+	public void setEnvironment(String environment) {
+		this.environment = environment;
+	}
+	public String getSpells() {
+		return spells;
+	}
+	public void setSpells(String spells) {
+		this.spells = spells;
+	}
+	public String getSlots() {
+		return slots;
+	}
+	public void setSlots(String slots) {
+		this.slots = slots;
 	}
 }

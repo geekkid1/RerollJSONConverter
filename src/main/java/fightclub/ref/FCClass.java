@@ -22,12 +22,12 @@ public class FCClass {
 	private String tools;
 	private String wealth;
 	private String spellAbility;
-	@JacksonXmlProperty(localName = "autoLevel")
+	@JacksonXmlProperty(localName = "autolevel")
 	@JacksonXmlElementWrapper(useWrapping = false)
 	private FCAutoLevel[] levelFeatures;
 	@JacksonXmlProperty(localName = "modifier")
 	@JacksonXmlElementWrapper(useWrapping = false)
-	private String[] modifiers;
+	private FCModifier[] modifiers;
 	
 	public String getName() {
 		return name;
@@ -89,10 +89,10 @@ public class FCClass {
 	public void setLevelFeatures(FCAutoLevel[] levelFeatures) {
 		this.levelFeatures = levelFeatures;
 	}
-	public String[] getModifiers() {
+	public FCModifier[] getModifiers() {
 		return modifiers;
 	}
-	public void setModifiers(String[] modifiers) {
+	public void setModifiers(FCModifier[] modifiers) {
 		this.modifiers = modifiers;
 	}
 }

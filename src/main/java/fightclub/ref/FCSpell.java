@@ -16,14 +16,18 @@ import com.fasterxml.jackson.dataformat.xml.annotation.*;
 public class FCSpell {
 	private String name;
 	private int level;
+	private String ritual;
+	private String school;
 	private String time;
 	private String range;
 	private String components;
 	private String duration;
 	@JacksonXmlProperty(localName = "text")
-	private String desc;
+	@JacksonXmlElementWrapper(useWrapping=false)
+	private String[] desc;
+	@JacksonXmlElementWrapper(useWrapping=false)
+	private String[] roll;
 	private String classes;
-	
 	
 	public String getName() {
 		return name;
@@ -36,6 +40,18 @@ public class FCSpell {
 	}
 	public void setLevel(int level) {
 		this.level = level;
+	}
+	public String getRitual() {
+		return ritual;
+	}
+	public void setRitual(String ritual) {
+		this.ritual = ritual;
+	}
+	public String getSchool() {
+		return school;
+	}
+	public void setSchool(String school) {
+		this.school = school;
 	}
 	public String getTime() {
 		return time;
@@ -61,11 +77,17 @@ public class FCSpell {
 	public void setDuration(String duration) {
 		this.duration = duration;
 	}
-	public String getDesc() {
+	public String[] getDesc() {
 		return desc;
 	}
-	public void setDesc(String desc) {
+	public void setDesc(String[] desc) {
 		this.desc = desc;
+	}
+	public String[] getRoll() {
+		return roll;
+	}
+	public void setRoll(String[] roll) {
+		this.roll = roll;
 	}
 	public String getClasses() {
 		return classes;

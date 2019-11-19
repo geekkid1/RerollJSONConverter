@@ -23,7 +23,7 @@ public class FCCompendium {
 	@JacksonXmlElementWrapper(useWrapping = false)
 	private FCRace[] races;
 
-	@JacksonXmlProperty(localName = "equipment")
+	@JacksonXmlProperty(localName = "item")
 	@JacksonXmlElementWrapper(useWrapping = false)
 	private FCItem[] items;
 	

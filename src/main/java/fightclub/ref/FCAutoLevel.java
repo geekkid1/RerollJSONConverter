@@ -1,8 +1,6 @@
 package fightclub.ref;
 
-import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
-import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
-import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
+import com.fasterxml.jackson.dataformat.xml.annotation.*;
 
 
 /**
@@ -13,17 +11,19 @@ import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
  */
 @JacksonXmlRootElement(localName = "autoLevel")
 public class FCAutoLevel {
-	private String slots;
+	private FCAutoSlots slots;
 	@JacksonXmlProperty(localName = "feature")
 	@JacksonXmlElementWrapper(useWrapping = false)
 	private FCTrait[] features;
 	@JacksonXmlProperty(isAttribute = true)
 	private int level;
+	@JacksonXmlProperty(isAttribute = true)
+	private String scoreImprovement;
 	
-	public String getSlots() {
+	public FCAutoSlots getSlots() {
 		return slots;
 	}
-	public void setSlots(String slots) {
+	public void setSlots(FCAutoSlots slots) {
 		this.slots = slots;
 	}
 	public FCTrait[] getFeatures() {
@@ -37,5 +37,11 @@ public class FCAutoLevel {
 	}
 	public void setLevel(int level) {
 		this.level = level;
+	}
+	public String getScoreImprovement() {
+		return scoreImprovement;
+	}
+	public void setScoreImprovement(String scoreImprovement) {
+		this.scoreImprovement = scoreImprovement;
 	}
 }

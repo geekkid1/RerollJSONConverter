@@ -13,6 +13,8 @@ import com.fasterxml.jackson.dataformat.xml.annotation.*;
 @JacksonXmlRootElement(localName="equipment")
 public class FCItem {
 	private String name;
+	private String detail;
+	private String magic;
 	private String type;
 	private double value;
 	private double weight;
@@ -27,6 +29,9 @@ public class FCItem {
 	private String property;
 	private String range;
 	private String roll;
+	@JacksonXmlProperty(localName = "modifier")
+	@JacksonXmlElementWrapper(useWrapping = false)
+	private FCModifier[] modifiers;
 	
 	public String getName() {
 		return name;
@@ -112,7 +117,22 @@ public class FCItem {
 	public void setRoll(String roll) {
 		this.roll = roll;
 	}
-	
-	
-
+	public FCModifier[] getModifiers() {
+		return modifiers;
+	}
+	public void setModifiers(FCModifier[] modifiers) {
+		this.modifiers = modifiers;
+	}
+	public String getDetail() {
+		return detail;
+	}
+	public void setDetail(String detail) {
+		this.detail = detail;
+	}
+	public String getMagic() {
+		return magic;
+	}
+	public void setMagic(String magic) {
+		this.magic = magic;
+	}
 }

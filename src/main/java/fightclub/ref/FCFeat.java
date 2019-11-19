@@ -20,7 +20,8 @@ public class FCFeat {
 	private String[] text;
 	@JacksonXmlProperty(localName = "modifier")
 	@JacksonXmlElementWrapper(useWrapping = false)
-	private String[] modifiers;
+	private FCModifier[] modifiers;
+	private String proficiency;
 	
 	public String getName() {
 		return name;
@@ -46,10 +47,16 @@ public class FCFeat {
 	public void setText(String[] text) {
 		this.text = text;
 	}
-	public String[] getModifiers() {
+	public FCModifier[] getModifiers() {
 		return modifiers;
 	}
-	public void setModifiers(String[] modifiers) {
+	public void setModifiers(FCModifier[] modifiers) {
 		this.modifiers = modifiers;
+	}
+	public String getProficiency() {
+		return proficiency;
+	}
+	public void setProficiency(String proficiency) {
+		this.proficiency = proficiency;
 	}
 }
