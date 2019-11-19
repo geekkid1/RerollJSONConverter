@@ -24,6 +24,18 @@ public class FCCompendium {
 	@JacksonXmlElementWrapper(useWrapping = false)
 	private FCRace[] races;
 
+	@JacksonXmlProperty(localName = "equipment")
+	@JacksonXmlElementWrapper(useWrapping = false)
+	private FCItem[] items;
+	
+	@JacksonXmlProperty(localName = "class")
+	@JacksonXmlElementWrapper(useWrapping = false)
+	private FCClass[] classes;
+	
+	@JacksonXmlProperty(localName = "monster")
+	@JacksonXmlElementWrapper(useWrapping = false)
+	private FCCreature[] bestiary;
+
 	public double getVersion() {
 		return version;
 	}
@@ -47,6 +59,28 @@ public class FCCompendium {
 	public void setRaces(FCRace[] races) {
 		this.races = races;
 	}
-	
-	
+
+	public FCItem[] getItems() {
+		return items;
+	}
+
+	public void setItems(FCItem[] items) {
+		this.items = items;
+	}
+
+	public FCClass[] getClasses() {
+		return classes;
+	}
+
+	public void setClasses(FCClass[] classes) {
+		this.classes = classes;
+	}
+
+	public FCCreature[] getBestiary() {
+		return bestiary;
+	}
+
+	public void setBestiary(FCCreature[] bestiary) {
+		this.bestiary = bestiary;
+	}
 }

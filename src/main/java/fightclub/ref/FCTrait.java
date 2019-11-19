@@ -21,6 +21,8 @@ public class FCTrait {
 	@JacksonXmlProperty(isAttribute = true)
 	private String optional;
 	
+	private String attack;
+	
 	public String getName() {
 		return name;
 	}
@@ -38,6 +40,12 @@ public class FCTrait {
 	}
 	public void setOptional(String optional) {
 		this.optional = optional;
+	}
+	public String getAttack() {
+		return attack;
+	}
+	public void setAttack(String attack) {
+		this.attack = attack;
 	}
 	
 	
