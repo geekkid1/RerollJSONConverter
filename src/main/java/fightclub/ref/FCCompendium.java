@@ -2,7 +2,6 @@ package fightclub.ref;
 
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
 
-
 /**
  * The object class that provides the data structure for the deserialization of the root XML
  * tag for the format this tool converts from. The different objects will be serialized into JSON
@@ -35,6 +34,14 @@ public class FCCompendium {
 	@JacksonXmlProperty(localName = "monster")
 	@JacksonXmlElementWrapper(useWrapping = false)
 	private FCCreature[] bestiary;
+	
+	@JacksonXmlProperty(localName = "background")
+	@JacksonXmlElementWrapper(useWrapping = false)
+	private FCBackground[] backgrounds;
+	
+	@JacksonXmlProperty(localName = "feat")
+	@JacksonXmlElementWrapper(useWrapping = false)
+	private FCFeat[] feats;
 
 	public double getVersion() {
 		return version;
@@ -82,5 +89,21 @@ public class FCCompendium {
 
 	public void setBestiary(FCCreature[] bestiary) {
 		this.bestiary = bestiary;
+	}
+
+	public FCBackground[] getBackgrounds() {
+		return backgrounds;
+	}
+
+	public void setBackgrounds(FCBackground[] backgrounds) {
+		this.backgrounds = backgrounds;
+	}
+
+	public FCFeat[] getFeats() {
+		return feats;
+	}
+
+	public void setFeats(FCFeat[] feats) {
+		this.feats = feats;
 	}
 }
