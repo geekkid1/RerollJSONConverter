@@ -101,10 +101,10 @@ public class Converter {
 		RRFeat retFeat = new RRFeat();
 		retFeat.setName(feat.getName());
 		String descConcat = "";
+		descConcat = descConcat.concat("Prerequisite: " + feat.getPrerequisite() + "\n");
 		List<String> descList = Arrays.asList(feat.getText());
 		for(String s : descList) {
-			if(!(descList.indexOf(s) == 0))
-				descConcat = descConcat.concat("\n");
+			descConcat = descConcat.concat("\n");
 			descConcat = descConcat.concat(s);
 		}
 		retFeat.setDesc(descConcat);
