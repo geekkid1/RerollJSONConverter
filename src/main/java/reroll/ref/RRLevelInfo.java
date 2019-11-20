@@ -1,8 +1,18 @@
 package reroll.ref;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+
+/**
+ * The class that allows storing of information regarding level increases. This is just basic information,
+ * like the proficiency bonus and spell slots.
+ * @author geekkid1
+ *
+ */
 public class RRLevelInfo {
 	private int number;
 	private int prof_bonus;
+	@JsonInclude(Include.NON_EMPTY)
 	private int[] spells_levels;
 	
 	public int getNumber() {
