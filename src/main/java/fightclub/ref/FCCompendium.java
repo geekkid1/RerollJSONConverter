@@ -6,7 +6,11 @@ import com.fasterxml.jackson.dataformat.xml.annotation.*;
  * The object class that provides the data structure for the deserialization of the root XML
  * tag for the format this tool converts from. The different objects will be serialized into JSON
  * files later in execution but this object class can be used in other settings if needed, that's why
- * they're all nicely organized, or at least I like to think they're nicely organized.
+ * they're all nicely organized, or at least I like to think they're nicely organized. </br> </br>
+ * 
+ * In order to get it to process all of the information in the xml document properly, make sure all of the
+ * tags of each type are in one "block". It reads in these blocks and if it encounters a new one it discards
+ * what it had and only capture the data contained in the last encountered block of that type.
  * @author geekkid1
  *
  */
