@@ -5,8 +5,8 @@ public class RRClass {
 	private int hit_die;
 	private String combat_resource;
 	private int skills_count_choose;
-	private String[] skills;
-	private String[] saving_throws;
+	private RRSkill[] skills;
+	private RRAbility[] saving_throws;
 	private int level_for_subclass;
 	private RRClassFeature[] class_features;
 	private RRLevelInfo[] levels;
@@ -35,16 +35,16 @@ public class RRClass {
 	public void setSkills_count_choose(int skills_count_choose) {
 		this.skills_count_choose = skills_count_choose;
 	}
-	public String[] getSkills() {
+	public RRSkill[] getSkills() {
 		return skills;
 	}
-	public void setSkills(String[] skills) {
+	public void setSkills(RRSkill[] skills) {
 		this.skills = skills;
 	}
-	public String[] getSaving_throws() {
+	public RRAbility[] getSaving_throws() {
 		return saving_throws;
 	}
-	public void setSaving_throws(String[] saving_throws) {
+	public void setSaving_throws(RRAbility[] saving_throws) {
 		this.saving_throws = saving_throws;
 	}
 	public int getLevel_for_subclass() {
