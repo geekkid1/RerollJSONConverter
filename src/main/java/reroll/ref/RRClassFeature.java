@@ -3,7 +3,7 @@ package reroll.ref;
 /**
  * The class used in both RRClass and RRSubClass for storing class features. These are
  * features gained at a specific level with a certain class and thus include in their fields
- * @author ibtro
+ * @author geekkid1
  *
  */
 public class RRClassFeature {
