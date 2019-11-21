@@ -189,6 +189,17 @@ public class Converter {
 		return retFeats;
 	}
 
+	/**
+	 * Converts a single race into Reroll format. As with the other single
+	 * object methods, please do not use this method. I have provided it as public
+	 * in case someone really really wants to use it but in most use cases you should
+	 * use the array converter instead, it's really much more efficient.
+	 * @param race ({@link FCRace}) the race to be converted into Reroll format
+	 * @return ({@link RRRace}) the resultant Reroll-format race after conversion
+	 * @see FCRace
+	 * @see RRRace
+	 * @see Converter#convert(FCFeat[])
+	 */
 	public RRRace convert(FCRace race) {
 		RRRace retRace = new RRRace();
 		retRace.setName(race.getName());
@@ -227,18 +238,37 @@ public class Converter {
 		retRace.setTraits((RRRacialTrait[])traitsList.toArray());
 		return retRace;
 	}
+	/**
+	 * Converts an array of race objects into Reroll format. As with the other
+	 * array methods, this is the recommended method to use as it covers the
+	 * most common use cases (converting to be used in Reroll JSON). Array goes
+	 * in, array comes out. Simple as that.
+	 * @param races ({@link FCRace FCRace[]}) the array of races to be converted into Reroll format
+	 * @return ({@link RRRace RRRace[]}) the resultant array of races, properly converted into Reroll format
+	 */
 	public RRRace[] convert(FCRace[] races) {
 		RRRace[] retRaces = new RRRace[races.length];
 		for(int i = 0; i < races.length; i++) {
 			retRaces[i] = convert(races[i]);
 		}
+		if(getLoggingLevel() == LoggingLevel.ALL) 
+			System.out.println("LOG: Converted " + retRaces.length + " races");
 		return retRaces;
 	}
 	
-	
+	/**
+	 * Gets the current logging level.
+	 * @return ({@link LoggingLevel}) the current logging level of the Converter
+	 * @see Converter#setLoggingLevel(LoggingLevel)
+	 */
 	public LoggingLevel getLoggingLevel() {
 		return loggingLevel;
 	}
+	/**
+	 * Changes the current logging level.
+	 * @param loggingLevel ({@link LoggingLevel}) the new desired logging level 
+	 * @see Converter#getLoggingLevel()
+	 */
 	public void setLoggingLevel(LoggingLevel loggingLevel) {
 		this.loggingLevel = loggingLevel;
 	}
