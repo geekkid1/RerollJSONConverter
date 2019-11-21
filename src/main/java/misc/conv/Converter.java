@@ -12,7 +12,7 @@ import reroll.ref.RRSpell.School;
  * A class for the conversion of objects into Reroll format so it can be easily serialized into
  * JSON files that Reroll will accept in its import data function. Has built-in very lightweight
  * logging capabilities so you can easily log counts of the items converted. Logging is turned off
- * by default but can be turned on. 
+ * by default but can be turned on easily with a single method call.
  * @author geekkid1
  *
  */
@@ -37,6 +37,8 @@ public class Converter {
 	 * @param spell (FCSpell) the spell to convert to Reroll format.
 	 * @return (RRSpell) the resultant Reroll formatted spell ready to be serialized into JSON.
 	 * @see Converter#convert(FCSpell[])
+	 * @see RRSpell
+	 * @see FCSpell
 	 */
 	public RRSpell convert(FCSpell spell) {
 		RRSpell retSpell = new RRSpell();
@@ -86,6 +88,8 @@ public class Converter {
 	 * @param spells (FCSpell[]) the array of spells to convert
 	 * @return (RRSpell[]) the converted array of spells
 	 * @see Converter#convert(FCSpell)
+	 * @see RRSpell
+	 * @see FCSpell
 	 */
 	public RRSpell[] convert(FCSpell[] spells) {
 		RRSpell[] retSpells = new RRSpell[spells.length];
@@ -97,6 +101,17 @@ public class Converter {
 		return retSpells;
 	}
 	
+	/**
+	 * Converts a single feat into Reroll format. It is not recommended to use
+	 * this method because it is more likely you are working with an array or other
+	 * structure storing your feats so you should instead use the version of this
+	 * method that takes in and converts an array of feats.
+	 * @param feat (FCFeat) the feat to be converted
+	 * @return (RRFeat) the converted feat
+	 * @see Converter#convert(FCFeat[])
+	 * @see RRFeat
+	 * @see FCFeat
+	 */
 	public RRFeat convert(FCFeat feat) {
 		RRFeat retFeat = new RRFeat();
 		retFeat.setName(feat.getName());
@@ -152,6 +167,18 @@ public class Converter {
 		}
 		return retFeat;
 	}
+	/**
+	 * Converts an array of FCFeat objects into an array of RRFeat objects, using the
+	 * single convert method to aid in this. Most likely, if you're converting even one
+	 * feat, you want to use this method to do it. Reroll takes JSON arrays, even if it
+	 * consists of only a single object. If logging is enabled, it logs the number of feats
+	 * converted in the method call.
+	 * @param feats (FCFeat[]) the array of FCFeat objects to convert
+	 * @return (RRFeat[]) the finished converted array of feats
+	 * @see Converter#convert(FCFeat)
+	 * @see RRFeat
+	 * @see FCFeat
+	 */
 	public RRFeat[] convert(FCFeat[] feats) {
 		RRFeat[] retFeats = new RRFeat[feats.length];
 		for(int i = 0; i < feats.length; i++) {
@@ -162,6 +189,51 @@ public class Converter {
 		return retFeats;
 	}
 
+	public RRRace convert(FCRace race) {
+		RRRace retRace = new RRRace();
+		retRace.setName(race.getName());
+		int[] abilIncrease = new int[6];
+		for(int i = 0; i < 6; i++) abilIncrease[i] = 0;
+		String[] splitString = race.getAbilityAdj().split(",");
+		for(int i = 0; i < splitString.length; i++) {
+			if(splitString[i].startsWith("Str")||splitString[i].startsWith("Str",1))
+				abilIncrease[0] = Integer.parseInt(splitString[i].substring(splitString.length-1));
+			else if(splitString[i].startsWith("Dex")||splitString[i].startsWith("Dex",1))
+				abilIncrease[0] = Integer.parseInt(splitString[i].substring(splitString.length-1));
+			else if(splitString[i].startsWith("Con")||splitString[i].startsWith("Con",1))
+				abilIncrease[0] = Integer.parseInt(splitString[i].substring(splitString.length-1));
+			else if(splitString[i].startsWith("Int")||splitString[i].startsWith("Int",1))
+				abilIncrease[0] = Integer.parseInt(splitString[i].substring(splitString.length-1));
+			else if(splitString[i].startsWith("Wis")||splitString[i].startsWith("Wis",1))
+				abilIncrease[0] = Integer.parseInt(splitString[i].substring(splitString.length-1));
+			else if(splitString[i].startsWith("Cha")||splitString[i].startsWith("Cha",1))
+				abilIncrease[0] = Integer.parseInt(splitString[i].substring(splitString.length-1));
+		}
+		retRace.setAbility_bonuses(abilIncrease);
+		retRace.setSpeed(race.getSpeed());
+		ArrayList<RRRacialTrait> traitsList = new ArrayList<RRRacialTrait>();
+		for(FCTrait t : Arrays.asList(race.getTraits())) {
+			RRRacialTrait r = new RRRacialTrait();
+			r.setName(t.getName());
+			String descConcat = "";
+			List<String> descList = Arrays.asList(t.getDesc());
+			for(String s : descList) {
+				if(descList.indexOf(s) != 0) descConcat = descConcat.concat("\n");
+				descConcat = descConcat.concat(s);
+			}
+			r.setDesc(descConcat);
+			traitsList.add(r);
+		}
+		retRace.setTraits((RRRacialTrait[])traitsList.toArray());
+		return retRace;
+	}
+	public RRRace[] convert(FCRace[] races) {
+		RRRace[] retRaces = new RRRace[races.length];
+		for(int i = 0; i < races.length; i++) {
+			retRaces[i] = convert(races[i]);
+		}
+		return retRaces;
+	}
 	
 	
 	public LoggingLevel getLoggingLevel() {
