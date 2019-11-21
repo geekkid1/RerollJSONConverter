@@ -1,5 +1,6 @@
 package misc.conv;
 
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -18,13 +19,22 @@ import reroll.ref.RRSpell.School;
  */
 public class Converter {
 	/**
-	 * The LoggingLevel of the Converter. Either LoggingLevel.NONE or LoggingLevel.ALL.
-	 * Defaults to LoggingLevel.NONE which means it will have no extra logging by default.
+	 * The LoggingLevel of the Converter. Either {@code LoggingLevel.NONE} or {@code LoggingLevel.ALL}.
+	 * Defaults to {@code LoggingLevel.NONE} which means it will have no extra logging by default.
 	 * @see LoggingLevel
 	 * @see Converter#getLoggingLevel()
 	 * @see Converter#setLoggingLevel(LoggingLevel)
+	 * @see Converter#logOutput
 	 */
 	private LoggingLevel loggingLevel = LoggingLevel.NONE;
+	/**
+	 * The {@code PrintStream} through which logging information will be sent. Defaults 
+	 * to {@code System.out}.
+	 * @see Converter#getLogOutput()
+	 * @see Converter#setLogOutput(OutputStream)
+	 * @see Converter#loggingLevel
+	 */
+	private PrintStream logOutput = System.out;
 	
 	/**
 	 * Converts a single spell into Reroll format. It is suggested to not use this
@@ -97,7 +107,7 @@ public class Converter {
 			retSpells[i] = convert(spells[i]);
 		}
 		if(getLoggingLevel() == LoggingLevel.ALL)
-			System.out.println("LOG: Converted " + retSpells.length + " spells.");
+			logOutput.println("LOG: Converted " + retSpells.length + " spells.");
 		return retSpells;
 	}
 	
@@ -185,7 +195,7 @@ public class Converter {
 			retFeats[i] = convert(feats[i]);
 		}
 		if(getLoggingLevel() == LoggingLevel.ALL)
-			System.out.println("LOG: Converted " + retFeats.length + " feats.");
+			logOutput.println("LOG: Converted " + retFeats.length + " feats.");
 		return retFeats;
 	}
 
@@ -252,7 +262,7 @@ public class Converter {
 			retRaces[i] = convert(races[i]);
 		}
 		if(getLoggingLevel() == LoggingLevel.ALL) 
-			System.out.println("LOG: Converted " + retRaces.length + " races");
+			logOutput.println("LOG: Converted " + retRaces.length + " races");
 		return retRaces;
 	}
 	
@@ -273,6 +283,37 @@ public class Converter {
 		this.loggingLevel = loggingLevel;
 	}
 	
+	/**
+	 * Provides the PrintStream that the Converter will log information to
+	 * @return ({@link PrintStream}) the PrintStream that will be logged to
+	 * @see Converter#logOutput
+	 * @see Converter#setLogOutput(PrintStream)
+	 */
+	public PrintStream getLogOutput() {
+		return logOutput;
+	}
+	/**
+	 * Allows the user to change the PrintStream that information is logged
+	 * to by the Converter. Currently the only information that is logged is
+	 * the amount of items converted in a method call.
+	 * @param logOutput ({@link PrintStream}) the PrintStream to be logged to in the future.
+	 * @see Converter#logOutput
+	 * @see Converter#getLogOutput()
+	 */
+	public void setLogOutput(PrintStream logOutput) {
+		this.logOutput = logOutput;
+	}
+	
+
+	/**
+	 * An enum representing the level of logging for the converter. Either
+	 * ALL or NONE. ALL logs everything it can, NONE logs nothing. More levels
+	 * coming soon as converter becomes more advanced. Right now only loggable
+	 * data is the number of items converted in a given method call.
+	 * @author geekkid1
+	 * @see Converter#getLoggingLevel()
+	 * @see Converter#setLoggingLevel(LoggingLevel)
+	 */
 	public enum LoggingLevel {
 		ALL,NONE;
 	}
