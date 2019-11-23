@@ -1,9 +1,7 @@
 package misc.conv;
 
 import java.io.PrintStream;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 import fightclub.ref.*;
 import reroll.ref.*;
@@ -19,7 +17,7 @@ import reroll.ref.RRSpell.School;
  */
 public class Converter {
 	/**
-	 * The LoggingLevel of the Converter. Either {@code LoggingLevel.NONE} or {@code LoggingLevel.ALL}.
+	 * The Logging Level of the Converter. Either {@code LoggingLevel.NONE} or {@code LoggingLevel.ALL}.
 	 * Defaults to {@code LoggingLevel.NONE} which means it will have no extra logging by default.
 	 * @see LoggingLevel
 	 * @see Converter#getLoggingLevel()
@@ -267,6 +265,25 @@ public class Converter {
 	}
 	
 	/**
+	 * Convert an entire compendium into Reroll format. Arrays of Reroll-formatted objects ready
+	 * to be written to their individual JSON files as originally intended. A nice, concise, single
+	 * method to reduce the amount of method calls in your program. I do hope you enjoy.
+	 * @param compendium ({@link FCCompendium}) a compendium object in the format of the source XML
+	 * @return ({@link RRCompendium}) a compendium object converted into the format of Reroll JSON (almost,
+	 * still needs to be separated into files and zipped.)
+	 * @see FCCompendium
+	 * @see RRCompendium
+	 */
+	
+	public RRCompendium convert(FCCompendium compendium) {
+		RRCompendium retCompendium = new RRCompendium();
+		retCompendium.setSpells(convert(compendium.getSpells()));
+		retCompendium.setFeats(convert(compendium.getFeats()));
+		retCompendium.setRaces(convert(compendium.getRaces()));
+		return retCompendium;
+	}
+	
+	/**
 	 * Gets the current logging level.
 	 * @return ({@link LoggingLevel}) the current logging level of the Converter
 	 * @see Converter#setLoggingLevel(LoggingLevel)
@@ -304,7 +321,7 @@ public class Converter {
 		this.logOutput = logOutput;
 	}
 	
-
+	
 	/**
 	 * An enum representing the level of logging for the converter. Either
 	 * ALL or NONE. ALL logs everything it can, NONE logs nothing. More levels
@@ -318,4 +335,4 @@ public class Converter {
 		ALL,NONE;
 	}
 
-}
+} // end class block
