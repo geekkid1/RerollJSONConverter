@@ -5,7 +5,7 @@
   <version>0.0.1-SNAPSHOT</version>
   <name>Fight Club to Reroll Converter</name>
   <properties>
-  	<jackson.version>2.10.0</jackson.version>
+  	<jackson.version>2.12.7.1</jackson.version>
   </properties>
   <dependencies>
   	<dependency>
